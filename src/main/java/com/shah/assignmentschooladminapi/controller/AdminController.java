@@ -8,6 +8,7 @@ import com.shah.assignmentschooladminapi.model.request.RegisterStudents;
 import com.shah.assignmentschooladminapi.model.response.CommonStudents;
 import com.shah.assignmentschooladminapi.service.StudentService;
 import com.shah.assignmentschooladminapi.service.TeacherService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class AdminController {
      *
      * @return
      */
+    @Operation(summary = "add student")
     @PostMapping("students")
     @ResponseStatus(HttpStatus.CREATED)
     public void addStudent(@Valid @RequestBody StudentDto student) {
@@ -49,6 +51,7 @@ public class AdminController {
      *
      * @return
      */
+    @Operation(summary = "add Teacher")
     @PostMapping("teachers")
     @ResponseStatus(HttpStatus.CREATED)
     public void addTeacher(@Valid @RequestBody TeacherDto teacher) {
@@ -62,6 +65,7 @@ public class AdminController {
      *
      * @return
      */
+    @Operation(summary = "Register Student to Teacher")
     @PostMapping("register")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addStudent(@Valid @RequestBody RegisterStudents registerStudents) {
@@ -75,6 +79,7 @@ public class AdminController {
      *
      * @param data
      */
+    @Operation(summary = "de Register Student From Teacher")
     @PostMapping("deregister")
     @ResponseStatus(HttpStatus.OK)
     public void deRegisterStudentFromTeacher(@Valid @RequestBody DeRegisterStudentFromTeacher data) {
@@ -88,6 +93,7 @@ public class AdminController {
      *
      * @return
      */
+    @Operation(summary = "Get list of students common to a given ist of teachers")
     @GetMapping("commonstudents")
     @ResponseStatus(HttpStatus.OK)
     public CommonStudents listOfStudentsCommonToAGivenListOfTeachers(
@@ -104,6 +110,7 @@ public class AdminController {
      *
      * @return
      */
+    @Operation(summary = "get Teacher With Students List")
     @GetMapping("teachers")
     @ResponseStatus(HttpStatus.OK)
     public AllTeachersWithStudentsDto getTeacherWithStudentsList() {

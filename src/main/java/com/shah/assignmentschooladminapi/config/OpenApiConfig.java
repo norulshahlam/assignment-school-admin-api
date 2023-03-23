@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 )
 @OpenAPIDefinition(
         info = @io.swagger.v3.oas.annotations.info.Info(
-                title = "Sample API",
+                title = "School admin api assignment for Cognizant",
                 version = "v1")
 )
 public class OpenApiConfig {
