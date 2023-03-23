@@ -14,7 +14,7 @@ There is no preloaded data so you have to add data manually. You can use the abo
   `http://localhost:8081/swagger-ui/index.html#/`
 
   Hostname for localhost: `http://localhost:8081`  
-  Hostname for production: `https://bookstore-api-dxc-assignement.herokuapp.com`  
+  Hostname for production: `https://assignment-school-admin-api.herokuapp.com/`  
 
 
 ### How to use?
@@ -30,7 +30,7 @@ password: password
 ```
 8. Or you can simply skip the steps and go to production api docs  
 
-    https://bookstore-api-dxc-assignement.herokuapp.com/swagger-ui/index.html
+    https://assignment-school-admin-api.herokuapp.com/swagger-ui/index.html
 
 8. For any issues, email me at norulshahlam@gmail.com or whatsapp me at +6592212152
 
