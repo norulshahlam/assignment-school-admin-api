@@ -91,7 +91,7 @@ public class AdminController {
     @GetMapping("commonstudents")
     @ResponseStatus(HttpStatus.OK)
     public CommonStudents listOfStudentsCommonToAGivenListOfTeachers(
-            @Parameter(description = "teacher's email", example = "abc@xyz.com")
+            @Parameter(description = "list of teacher's email", example = "abc@xyz.com")
             @RequestParam(required = false) List<String> teacher) {
         log.info("in AdminController::listOfStudentsCommonToAGivenListOfTeachers");
         log.info("listOfStudentsCommonToAGivenListOfTeachers: {}", teacher);
