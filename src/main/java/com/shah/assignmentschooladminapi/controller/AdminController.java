@@ -13,7 +13,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -103,7 +102,7 @@ public class AdminController {
     public CommonStudents listOfStudentsCommonToAGivenListOfTeachers(
             @Parameter(description = "list of teacher's email", example = "[\"teacher1@xyz.com\", \"teacher2@xyz.com\"]")
             @RequestParam(value = "teacher", required = false)
-            @NotEmpty List<@NotBlank(message = "teacher Email cannot be blank")
+            @NotEmpty(message = "Please input at least one email") List<@NotBlank(message = "teacher Email cannot be blank")
             @Email(message = "teacher email address must be in proper format") String> teacherEmails) {
         log.info("in AdminController::listOfStudentsCommonToAGivenListOfTeachers");
         log.info("listOfStudentsCommonToAGivenListOfTeachers: {}", teacherEmails);

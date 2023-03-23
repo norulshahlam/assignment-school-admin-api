@@ -92,6 +92,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({Exception.class})
     @ResponseBody
     public AdminResponse handleOtherException(Exception e) {
+        log.error("handleOtherException caught here: {}", e.getMessage());
         return AdminResponse.failureResponse(e.getLocalizedMessage());
     }
 

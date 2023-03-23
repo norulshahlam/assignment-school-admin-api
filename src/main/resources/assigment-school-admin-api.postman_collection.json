@@ -106,7 +106,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/api/commonstudents?teacher=teacher3@gmail.com&teacher=teacher4@gmail.com",
+					"raw": "http://localhost:8081/api/commonstudents?teacher=teacher2@gmail.com",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -124,16 +124,17 @@
 						},
 						{
 							"key": "teacher",
-							"value": "teacher2@gmail.com",
+							"value": "teacher2@gmail.com"
+						},
+						{
+							"key": "teacher",
+							"value": "teacher3@gmail.com",
 							"disabled": true
 						},
 						{
 							"key": "teacher",
-							"value": "teacher3@gmail.com"
-						},
-						{
-							"key": "teacher",
-							"value": "teacher4@gmail.com"
+							"value": "teacher4@gmail.com",
+							"disabled": true
 						}
 					]
 				}
