@@ -1,0 +1,12 @@
+openapi:
+  project-title: @project.name@
+  project-version: @project.version@
+  project-description: @project.description@
+spring-doc:
+  pathsToMatch: /api/**
+spring:
+  application:
+    name: assignment-school-admin-api
+    description: management of student and teacher data
+  profiles:
+    active: dev
