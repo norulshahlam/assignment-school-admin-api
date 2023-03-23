@@ -3,7 +3,7 @@ package com.shah.assignmentschooladminapi.impl;
 import com.shah.assignmentschooladminapi.model.dto.AllTeachersWithStudentsDto;
 import com.shah.assignmentschooladminapi.model.dto.TeacherDto;
 import com.shah.assignmentschooladminapi.entity.Student;
-import com.shah.assignmentschooladminapi.entity.TeacherWithStudentList;
+import com.shah.assignmentschooladminapi.entity.Teacher;
 import com.shah.assignmentschooladminapi.exception.AdminException;
 import com.shah.assignmentschooladminapi.model.request.DeRegisterStudentFromTeacher;
 import com.shah.assignmentschooladminapi.model.request.RegisterStudents;
@@ -45,15 +45,15 @@ public class TeacherServiceImpl implements TeacherService {
                 .ifPresent(i -> {
                     throw new AdminException(i.getEmail() + " already exists");
                 });
-        TeacherWithStudentList teacherWithStudentListEntity = teacherDtoToEntityMapper(teacher);
-        teacherRepository.save(teacherWithStudentListEntity);
+        Teacher teacherEntity = teacherDtoToEntityMapper(teacher);
+        teacherRepository.save(teacherEntity);
     }
 
     @Override
     public void registerStudentsToTeacher(RegisterStudents registerStudents) {
 
         // Check if teacher exists in DB
-        TeacherWithStudentList teacherWithStudentList = getTeacherByEmail(registerStudents.getTeacher());
+        Teacher teacher = getTeacherByEmail(registerStudents.getTeacher());
 
         // Remove any duplicate emails
         List<String> newEmails = registerStudents.getStudents().stream().distinct().collect(Collectors.toList());
@@ -65,38 +65,38 @@ public class TeacherServiceImpl implements TeacherService {
                 .collect(Collectors.toList());
 
         // Check if new students is already registered to teacher
-        checkForRegisteredStudents(teacherWithStudentList, newEmails);
+        checkForRegisteredStudents(teacher, newEmails);
 
-        teacherWithStudentList.getStudents().addAll(existingStudents);
-        teacherRepository.save(teacherWithStudentList);
+        teacher.getStudents().addAll(existingStudents);
+        teacherRepository.save(teacher);
     }
 
 
     @Override
     public AllTeachersWithStudentsDto getTeacherWithStudents() {
-        List<TeacherWithStudentList> teacherWithStudentListList = teacherRepository.findAll();
-        if (ObjectUtils.isEmpty(teacherWithStudentListList)) {
+        List<Teacher> teacher = teacherRepository.findAll();
+        if (ObjectUtils.isEmpty(teacher)) {
             throw new AdminException("No teachers present");
         }
-        return teacherEntityToTeacherStudentDto(teacherWithStudentListList);
+        return teacherEntityToTeacherStudentDto(teacher);
     }
 
     @Override
     public void deRegisterStudentFromTeacher(DeRegisterStudentFromTeacher data) {
 
         // Check if student is already registered to the specified teacher
-        TeacherWithStudentList teacherWithStudentList = teacherRepository
+        Teacher teacher = teacherRepository
                 .findByEmailAndStudentsEmail(data.getTeacher(), data.getStudent())
                 .orElseThrow(() -> new AdminException("Student not found under specified teacher"));
 
-        Optional<Student> first = teacherWithStudentList.getStudents().stream().filter(i -> i.getEmail().equals(data.getStudent())).findFirst();
+        Optional<Student> first = teacher.getStudents().stream().filter(i -> i.getEmail().equals(data.getStudent())).findFirst();
 
-        first.ifPresent(student -> teacherWithStudentList.getStudents().remove(student));
+        first.ifPresent(student -> teacher.getStudents().remove(student));
 
-        teacherRepository.save(teacherWithStudentList);
+        teacherRepository.save(teacher);
     }
 
-    private TeacherWithStudentList getTeacherByEmail(String teacherEmail) {
+    private Teacher getTeacherByEmail(String teacherEmail) {
         return teacherRepository
                 .findByEmail(teacherEmail)
                 .orElseThrow(() ->
@@ -110,15 +110,15 @@ public class TeacherServiceImpl implements TeacherService {
                         new AdminException(studentEmail + " doesn't exists"));
     }
 
-    private void checkForRegisteredStudents(TeacherWithStudentList teacherWithStudentList, List<String> newEmails) {
-        List<String> oldEmails = teacherWithStudentList.getStudents().stream()
+    private void checkForRegisteredStudents(Teacher teacher, List<String> newEmails) {
+        List<String> oldEmails = teacher.getStudents().stream()
                 .map(Student::getEmail)
                 .collect(Collectors.toList());
         List<String> duplicates = newEmails.stream()
                 .filter(oldEmails::contains)
                 .collect(Collectors.toList());
         if (!duplicates.isEmpty()) {
-            throw new AdminException(String.join(" and ", duplicates) + " already registered under teacher " + teacherWithStudentList.getEmail());
+            throw new AdminException(String.join(" and ", duplicates) + " already registered under teacher " + teacher.getEmail());
         }
     }
 
@@ -130,7 +130,7 @@ public class TeacherServiceImpl implements TeacherService {
         }
 
         // Check if teacher exists in DB while removing duplicates
-        List<TeacherWithStudentList> teachers = teacherEmails.stream().distinct().map(this::getTeacherByEmail).collect(Collectors.toList());
+        List<Teacher> teachers = teacherEmails.stream().distinct().map(this::getTeacherByEmail).collect(Collectors.toList());
 
         log.info("List of teachers: {}", teachers);
 

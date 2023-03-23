@@ -1,6 +1,6 @@
 package com.shah.assignmentschooladminapi.repository;
 
-import com.shah.assignmentschooladminapi.entity.TeacherWithStudentList;
+import com.shah.assignmentschooladminapi.entity.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -9,13 +9,13 @@ import java.util.Optional;
 /**
  * @author NORUL
  */
-public interface TeacherRepository extends JpaRepository<TeacherWithStudentList, Long> {
+public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 
-    Optional<TeacherWithStudentList> findByEmail(String email);
+    Optional<Teacher> findByEmail(String email);
 
-    List<TeacherWithStudentList> findAllByEmailIn(List<String> teacher);
+    List<Teacher> findAllByEmailIn(List<String> teacher);
 
-    Optional<TeacherWithStudentList> findByEmailAndStudentsEmail(String teacherEmail,String studentEmail);
+    Optional<Teacher> findByEmailAndStudentsEmail(String teacherEmail, String studentEmail);
 
 
 }

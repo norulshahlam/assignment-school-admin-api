@@ -4,7 +4,7 @@ import com.shah.assignmentschooladminapi.model.dto.AllTeachersWithStudentsDto;
 import com.shah.assignmentschooladminapi.model.dto.StudentDto;
 import com.shah.assignmentschooladminapi.model.dto.TeacherDto;
 import com.shah.assignmentschooladminapi.entity.Student;
-import com.shah.assignmentschooladminapi.entity.TeacherWithStudentList;
+import com.shah.assignmentschooladminapi.entity.Teacher;
 import com.shah.assignmentschooladminapi.model.TeacherStudent;
 
 import java.util.List;
@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
  */
 public class DtoToEntityMapper {
 
-    public static TeacherWithStudentList teacherDtoToEntityMapper(TeacherDto dto) {
+    public static Teacher teacherDtoToEntityMapper(TeacherDto dto) {
 
-        return TeacherWithStudentList.builder()
+        return Teacher.builder()
                 .email(dto.getEmail())
                 .name(dto.getName())
                 .build();
@@ -31,7 +31,7 @@ public class DtoToEntityMapper {
                 .build();
     }
 
-    public static AllTeachersWithStudentsDto teacherEntityToTeacherStudentDto(List<TeacherWithStudentList> entityList) {
+    public static AllTeachersWithStudentsDto teacherEntityToTeacherStudentDto(List<Teacher> entityList) {
 
         List<TeacherStudent> teacherStudent = entityList.stream().map(i ->
 

@@ -2,7 +2,7 @@ package com.shah.assignmentschooladminapi.impl;
 
 import com.shah.assignmentschooladminapi.model.dto.TeacherDto;
 import com.shah.assignmentschooladminapi.entity.Student;
-import com.shah.assignmentschooladminapi.entity.TeacherWithStudentList;
+import com.shah.assignmentschooladminapi.entity.Teacher;
 import com.shah.assignmentschooladminapi.exception.AdminException;
 import com.shah.assignmentschooladminapi.model.request.DeRegisterStudentFromTeacher;
 import com.shah.assignmentschooladminapi.model.request.RegisterStudents;
@@ -38,10 +38,10 @@ class TeacherServiceImplTest {
 
     private TeacherDto teacherDto;
     private Student student;
-    private TeacherWithStudentList teacherWithStudentList;
+    private Teacher teacher;
 
     @Mock
-    private TeacherWithStudentList teacherWithStudentListMock;
+    private Teacher teacherMock;
     private RegisterStudents registerStudents;
     private DeRegisterStudentFromTeacher deRegisterStudentFromTeacher;
     private List<String> teacherEmails;
@@ -59,7 +59,7 @@ class TeacherServiceImplTest {
                 .email(STUDENT_EMAIL1)
                 .build();
 
-        teacherWithStudentList = TeacherWithStudentList.builder()
+        teacher = Teacher.builder()
                 .email(TEACHER_EMAIL1)
                 .name(TEACHER_NAME)
                 .students(new LinkedList<>(Arrays.asList(student)))
@@ -89,13 +89,13 @@ class TeacherServiceImplTest {
 
     @Test
     void addTeacher_Failure() {
-        when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacherWithStudentList));
+        when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacher));
         assertThrows(AdminException.class, () -> teacherService.addTeacher(teacherDto));
     }
 
     @Test
     void registerStudentsToTeacher_Success() {
-        when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacherWithStudentList));
+        when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacher));
         when(studentRepository.findByEmail(any())).thenReturn(Optional.of(student));
         teacherService.registerStudentsToTeacher(registerStudents);
         verify(teacherRepository, times(1)).findByEmail(teacherDto.getEmail());
@@ -107,7 +107,7 @@ class TeacherServiceImplTest {
                 .teacher(TEACHER_EMAIL1)
                 .students(Arrays.asList(STUDENT_EMAIL1))
                 .build();
-        when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacherWithStudentList));
+        when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacher));
         when(studentRepository.findByEmail(any())).thenReturn(Optional.of(student));
         assertThrows(AdminException.class, () -> teacherService.registerStudentsToTeacher(registerStudents));
         verify(teacherRepository, times(1)).findByEmail(teacherDto.getEmail());
@@ -121,14 +121,14 @@ class TeacherServiceImplTest {
 
     @Test
     void registerStudentsToTeacher_StudentNotFound() {
-        when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacherWithStudentList));
+        when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacher));
         when(studentRepository.findByEmail(any())).thenReturn(Optional.empty());
         assertThrows(AdminException.class, () -> teacherService.registerStudentsToTeacher(registerStudents));
     }
 
     @Test
     void getTeacherWithStudents_Success() {
-        when(teacherRepository.findAll()).thenReturn(List.of(teacherWithStudentList));
+        when(teacherRepository.findAll()).thenReturn(List.of(teacher));
         teacherService.getTeacherWithStudents();
         verify(teacherRepository, times(1)).findAll();
     }
@@ -141,7 +141,7 @@ class TeacherServiceImplTest {
 
     @Test
     void deRegisterStudentFromTeacher() {
-        when(teacherRepository.findByEmailAndStudentsEmail(any(), any())).thenReturn(Optional.of(teacherWithStudentList));
+        when(teacherRepository.findByEmailAndStudentsEmail(any(), any())).thenReturn(Optional.of(teacher));
 
         teacherService.deRegisterStudentFromTeacher(deRegisterStudentFromTeacher);
 
@@ -150,9 +150,9 @@ class TeacherServiceImplTest {
 
     @Test
     void listOfStudentsCommonToAGivenListOfTeachers_CommonStudentNotFound() {
-        when(teacherRepository.findByEmail(TEACHER_EMAIL2)).thenReturn(Optional.ofNullable(teacherWithStudentList));
-        when(teacherRepository.findByEmail(TEACHER_EMAIL1)).thenReturn(Optional.ofNullable(teacherWithStudentListMock));
-        when(teacherWithStudentListMock.getStudents()).thenReturn(List.of(Student.builder().email(STUDENT_EMAIL2).build()));
+        when(teacherRepository.findByEmail(TEACHER_EMAIL2)).thenReturn(Optional.ofNullable(teacher));
+        when(teacherRepository.findByEmail(TEACHER_EMAIL1)).thenReturn(Optional.ofNullable(teacherMock));
+        when(teacherMock.getStudents()).thenReturn(List.of(Student.builder().email(STUDENT_EMAIL2).build()));
         teacherService.listOfStudentsCommonToAGivenListOfTeachers(List.of(TEACHER_EMAIL1));
         assertThrows(AdminException.class, () -> teacherService.listOfStudentsCommonToAGivenListOfTeachers(teacherEmails));
     }
