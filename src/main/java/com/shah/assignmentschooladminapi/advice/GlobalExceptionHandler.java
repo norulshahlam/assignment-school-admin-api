@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 @Slf4j
@@ -61,6 +63,31 @@ public class GlobalExceptionHandler {
         return AdminResponse.failureResponse(errorMessages);
     }
 
+    /**
+     * When an action violates a constraint validation
+     *
+     * @param req
+     * @param e
+     * @return
+     */
+
+    @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler({ConstraintViolationException.class})
+    @ResponseBody
+    public AdminResponse handleConstraintViolationException(HttpServletRequest req, ConstraintViolationException e) {
+
+        List<String> errorMessages = e.getConstraintViolations().stream().map(violation -> violation.getPropertyPath().toString() + ": " + violation.getMessage()).collect(Collectors.toList());
+        log.error("requestUrl : {}, occurred an error : {}, exception detail : {}", req.getRequestURI(), errorMessages, e);
+        String collect = String.join(", ", errorMessages);
+        return AdminResponse.failureResponse(collect);
+    }
+
+    /**
+     * For all other unexpected exceptions
+     *
+     * @param e
+     * @return
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({Exception.class})
     @ResponseBody

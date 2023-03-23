@@ -19,12 +19,12 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class TeacherDto {
 
-    @Schema(type = "string", example = "abc@xyz.com")
+    @Schema(type = "string", example = "teacher1@xyz.com")
     @NotBlank(message ="teacher email cannot be blank")
     @Email(message = "email address must be in proper format")
     private String email;
 
-    @Schema(type = "string", example = "abc")
+    @Schema(type = "string", example = "teacher1")
     @NotBlank(message ="teacher name cannot be blank")
     private String name;
 }

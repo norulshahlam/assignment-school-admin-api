@@ -13,6 +13,7 @@ import com.shah.assignmentschooladminapi.repository.TeacherRepository;
 import com.shah.assignmentschooladminapi.service.TeacherService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -128,9 +129,12 @@ public class TeacherServiceImpl implements TeacherService {
         if (ObjectUtils.isEmpty(teacherEmails)) {
             throw new AdminException("Please input at least one teacher email");
         }
-
-        // Check if teacher exists in DB while removing duplicates
-        List<Teacher> teachers = teacherEmails.stream().distinct().map(this::getTeacherByEmail).collect(Collectors.toList());
+        // Check if teacher exists in DB while removing duplicates and blank spaces
+        List<Teacher> teachers = teacherEmails.stream()
+                .distinct()
+                .filter(StringUtils::isNotBlank)
+                .map(this::getTeacherByEmail)
+                .collect(Collectors.toList());
 
         log.info("List of teachers: {}", teachers);
 
@@ -150,9 +154,11 @@ public class TeacherServiceImpl implements TeacherService {
         if (ObjectUtils.isEmpty(commonStudentEmails)) {
             throw new AdminException("Common student not found");
         }
+
         if (teacherEmails.size() == 1) {
             commonStudentEmails.add("student_only_under_" + teacherEmails.get(0));
         }
+
         return new CommonStudents(commonStudentEmails);
     }
 }

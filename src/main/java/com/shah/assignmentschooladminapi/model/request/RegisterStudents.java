@@ -21,15 +21,13 @@ import java.util.List;
 @Builder
 public class RegisterStudents {
 
-    @Schema(type = "string", example = "abc@xyz.com")
+    @Schema(type = "string", example = "teacher1@xyz.com")
     @NotBlank(message = "teacher Email cannot be blank")
     @Email(message = "teacher email address must be in proper format")
     private String teacher;
 
-    @Schema(type = "array", example = "abc@xyz.com")
-    private List<
-
-            @Email(message = "student email address must be in proper format")
+    @Schema(type = "array", example = "[\"student1@xyz.com\"]")
+    private List<@Email(message = "student email address must be in proper format")
             @NotEmpty(message = "students Email cannot be blank")
                     String> students;
 }

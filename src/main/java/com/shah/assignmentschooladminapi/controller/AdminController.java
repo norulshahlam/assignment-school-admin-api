@@ -13,9 +13,13 @@ import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 /**
@@ -97,12 +101,14 @@ public class AdminController {
     @GetMapping("commonstudents")
     @ResponseStatus(HttpStatus.OK)
     public CommonStudents listOfStudentsCommonToAGivenListOfTeachers(
-            @Parameter(description = "list of teacher's email", example = "abc@xyz.com")
-            @RequestParam(required = false) List<String> teacher) {
+            @Parameter(description = "list of teacher's email", example = "[\"teacher1@xyz.com\", \"teacher2@xyz.com\"]")
+            @RequestParam(value = "teacher", required = false)
+            @NotEmpty List<@NotBlank(message = "teacher Email cannot be blank")
+            @Email(message = "teacher email address must be in proper format") String> teacherEmails) {
         log.info("in AdminController::listOfStudentsCommonToAGivenListOfTeachers");
-        log.info("listOfStudentsCommonToAGivenListOfTeachers: {}", teacher);
+        log.info("listOfStudentsCommonToAGivenListOfTeachers: {}", teacherEmails);
 
-        return teacherService.listOfStudentsCommonToAGivenListOfTeachers(teacher);
+        return teacherService.listOfStudentsCommonToAGivenListOfTeachers(teacherEmails);
     }
 
     /**
@@ -117,6 +123,5 @@ public class AdminController {
         log.info("in AdminController::getTeacherWithStudents");
         return teacherService.getTeacherWithStudents();
     }
-
 
 }
