@@ -126,9 +126,6 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public CommonStudents listOfStudentsCommonToAGivenListOfTeachers(List<String> teacherEmails) {
 
-        if (ObjectUtils.isEmpty(teacherEmails)) {
-            throw new AdminException("Please input at least one teacher email");
-        }
         // Check if teacher exists in DB while removing duplicates and blank spaces
         List<Teacher> teachers = teacherEmails.stream()
                 .distinct()
