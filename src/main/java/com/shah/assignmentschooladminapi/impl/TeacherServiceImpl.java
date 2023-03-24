@@ -124,7 +124,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public CommonStudents listOfStudentsCommonToAGivenListOfTeachers(List<String> teacherEmails) {
+    public CommonStudents listOfStudentsCommonToListOfTeachers(List<String> teacherEmails) {
 
         // Check if teacher exists in DB while removing duplicates and blank spaces
         List<Teacher> teachers = teacherEmails.stream()

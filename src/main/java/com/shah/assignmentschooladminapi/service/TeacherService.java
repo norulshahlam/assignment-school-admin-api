@@ -21,5 +21,5 @@ public interface TeacherService {
 
     void deRegisterStudentFromTeacher(DeRegisterStudentFromTeacher data);
 
-    CommonStudents listOfStudentsCommonToAGivenListOfTeachers(List<String> teacher);
+    CommonStudents listOfStudentsCommonToListOfTeachers(List<String> teacher);
 }

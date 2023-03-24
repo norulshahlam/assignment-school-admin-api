@@ -153,12 +153,12 @@ class TeacherServiceImplTest {
         when(teacherRepository.findByEmail(TEACHER_EMAIL2)).thenReturn(Optional.ofNullable(teacher));
         when(teacherRepository.findByEmail(TEACHER_EMAIL1)).thenReturn(Optional.ofNullable(teacherMock));
         when(teacherMock.getStudents()).thenReturn(List.of(Student.builder().email(STUDENT_EMAIL2).build()));
-        teacherService.listOfStudentsCommonToAGivenListOfTeachers(List.of(TEACHER_EMAIL1));
-        assertThrows(AdminException.class, () -> teacherService.listOfStudentsCommonToAGivenListOfTeachers(teacherEmails));
+        teacherService.listOfStudentsCommonToListOfTeachers(List.of(TEACHER_EMAIL1));
+        assertThrows(AdminException.class, () -> teacherService.listOfStudentsCommonToListOfTeachers(teacherEmails));
     }
 
     @Test
     void listOfStudentsCommonToAGivenListOfTeachers_EmptyTeacherEmails() {
-        assertThrows(AdminException.class, () -> teacherService.listOfStudentsCommonToAGivenListOfTeachers(new ArrayList<>()));
+        assertThrows(AdminException.class, () -> teacherService.listOfStudentsCommonToListOfTeachers(new ArrayList<>()));
     }
 }

@@ -26,9 +26,6 @@ public class GlobalExceptionHandler {
 
     /**
      * User-defined exception for business related exceptions
-     *
-     * @param e
-     * @return
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({AdminException.class})
@@ -39,10 +36,6 @@ public class GlobalExceptionHandler {
 
     /**
      * to handle constraint when validating request body from client input
-     *
-     * @param req
-     * @param e
-     * @return
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({MethodArgumentNotValidException.class})
@@ -60,16 +53,12 @@ public class GlobalExceptionHandler {
         }
         String errorMessages = String.join(", ", cause);
 
-        log.error("ERROR_CAUSED_BY: ", errorMessages);
+        log.error("requestUrl : {}, occurred an error : {}", req.getRequestURI(), errorMessages);
         return AdminResponse.failureResponse(errorMessages);
     }
 
     /**
      * When an action violates a constraint validation
-     *
-     * @param req
-     * @param e
-     * @return
      */
 
     @ResponseStatus(HttpStatus.OK)
@@ -86,9 +75,6 @@ public class GlobalExceptionHandler {
 
     /**
      * For all other unexpected exceptions
-     *
-     * @param e
-     * @return
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({Exception.class})

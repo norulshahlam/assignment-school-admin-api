@@ -106,10 +106,10 @@ public class AdminController {
             @RequestParam(value = "teacher", required = false)
             @NotEmpty(message = "Please input at least one teacher email") List<@NotBlank(message = "teacher Email cannot be blank")
             @Email(message = "teacher email address must be in proper format") String> teacherEmails) {
-        log.info("in AdminController::listOfStudentsCommonToAGivenListOfTeachers");
-        log.info("listOfStudentsCommonToAGivenListOfTeachers: {}", teacherEmails);
+        log.info("in AdminController::listOfStudentsCommonToListOfTeachers");
+        log.info("listOfStudentsCommonToListOfTeachers: {}", teacherEmails);
 
-        return teacherService.listOfStudentsCommonToAGivenListOfTeachers(teacherEmails);
+        return teacherService.listOfStudentsCommonToListOfTeachers(teacherEmails);
     }
 
     /**
