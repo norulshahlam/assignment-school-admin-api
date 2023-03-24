@@ -1,7 +1,7 @@
 # Assigment for Cognizant technical assessment
 
 ### Introduction
-The Assignment School Admin project is an API that register teachers to students. It provides a secure and easy-to-use platform for teachers to view their list of students.
+The Assignment School Admin project is an API that register teachers to students. It provides a secure and easy-to-use platform for teachers to view their list of students ([view requirement](https://gist.github.com/ongbt/b06720e106a4a02ddf33de7bc5537e19#backend-api-asessment)).
 
 ### Technology Stack
 The Assignment School Admin project is built using the following technology stack:
@@ -29,9 +29,7 @@ The School Administration System provides the following features:
 ### DB diagram illustration
 ![Image](./src/main/resources/db-diagram.PNG)
 
-
-### [View requirement](./src/main/resources/dev-assessment.md)
-### [Postman collection (import into Postman)](https://gist.github.com/ongbt/b06720e106a4a02ddf33de7bc5537e19#backend-api-asessment)
+### [Postman collection (import into Postman)](/src/main/resources/assigment-school-admin-api.postman_collection.json)
 
   Hostname for dev profile: `http://localhost:8081`  
   Hostname for prod profile: `https://assignment-school-admin-api.herokuapp.com/`  
