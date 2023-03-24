@@ -1,4 +1,4 @@
-# Assigment for Cognizant technical assessment
+#  [Assignment for technical assessment](https://gist.github.com/ongbt/b06720e106a4a02ddf33de7bc5537e19#backend-api-asessment)
 
 ### Introduction
 The Assignment School Admin project is an API that register teachers to students. It provides a secure and easy-to-use platform for teachers to view their list of students ([view requirement](https://gist.github.com/ongbt/b06720e106a4a02ddf33de7bc5537e19#backend-api-asessment)).
