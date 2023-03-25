@@ -29,8 +29,6 @@ The School Administration System provides the following features:
 ### DB diagram illustration
 ![Image](./src/main/resources/db-diagram.PNG)
 
-### [Postman collection (import into Postman)](/src/main/resources/assigment-school-admin-api.postman_collection.json)
-
   Hostname for dev profile: `http://localhost:8081`  
   Hostname for prod profile: `https://assignment-school-admin-api.herokuapp.com/`  
 
@@ -40,18 +38,17 @@ To use the Assignment School Admin project, follow these steps:
 
 1. Simply clone this git, install and run as Spring application. 
 2. By default, dev profile is selected and there is no preloaded data.
-3. Use the dev profile as your hostname (listed ABOVE). 
-4. Import the postman collections and ready to use (listed ABOVE). 
-5. Alternatively you can use api doc in `{hostname}/swagger-ui/index.html#/`
-6. As this is secured API, you must enter your credentials under basic auth:  
+3. Import the postman collection [**HERE**](/src/main/resources/assigment-school-admin-api.postman_collection.json) and ready to use (listed ABOVE). 
+4. Alternatively you can use api doc in `{hostname}/swagger-ui/index.html#/`
+5. As this is secured API, you must enter your credentials under basic auth:  
 
        username: admin
        password: password
 
-7. Or you can simply skip the steps and go to production api docs  
+6. Or you can simply skip the steps and go to production api docs  
 
        https://assignment-school-admin-api.herokuapp.com/swagger-ui/index.html
 
-8. For any issues, email me at norulshahlam@gmail.com or whatsapp me at +6592212152
+7. For any issues, email me at norulshahlam@gmail.com or whatsapp me at +6592212152
 
 ### HAPPY TESTING!
