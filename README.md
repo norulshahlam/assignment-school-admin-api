@@ -38,7 +38,7 @@ To use the Assignment School Admin project, follow these steps:
 
 1. Simply clone this git, install and run as Spring application. 
 2. By default, dev profile is selected and there is no preloaded data.
-3. Import the postman collection [**HERE**](/src/main/resources/assigment-school-admin-api.postman_collection.json) and ready to use (listed ABOVE). 
+3. Import the postman collection [**HERE**](/src/main/resources/assigment-school-admin-api.postman_collection.json) and ready to use. 
 4. Alternatively you can use api doc in `{hostname}/swagger-ui/index.html#/`
 5. As this is secured API, you must enter your credentials under basic auth:  
 
