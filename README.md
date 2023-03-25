@@ -4,7 +4,7 @@
 The School Admin project is an API service that register teachers to students. It provides a secure and easy-to-use platform for teachers to view their list of students.
 
 ### Technology Stack
-The School Admin project is built using the following technology stack:
+The School Administration API is built using the following technology stack:
 
 - Java 11
 - Spring Boot Framework
@@ -16,7 +16,7 @@ The Spring Boot Framework provides a robust and scalable platform for building w
 By utilizing these technologies, the project is able to deliver a fast, reliable, and secure web application for managing assignments and students.  
 
 ### Features
-The School Administration System provides the following features:
+The School Administration API provides the following features:
 
 - Student & teacher registration
 - Register single/multiple student to teacher
@@ -45,7 +45,7 @@ To run the Assignment School Admin project, follow these steps:
        username: admin
        password: password
 
-6. Or you can simply skip the steps and go to production api docs  
+6. If you are using production url, you may skip all steps above and go to the api documentation  
 
        https://assignment-school-admin-api.herokuapp.com/swagger-ui/index.html
 
