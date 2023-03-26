@@ -9,6 +9,9 @@ import io.swagger.v3.oas.models.info.License;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author NORUL
+ */
 @Configuration
 @SecurityScheme(
         name = "basicAuth", // can be set to anything
@@ -17,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 )
 @OpenAPIDefinition(
         info = @io.swagger.v3.oas.annotations.info.Info(
-                title = "School admin api assignment for Cognizant",
+                title = "School Admin API",
                 version = "v1")
 )
 public class OpenApiConfig {
@@ -38,7 +41,7 @@ public class OpenApiConfig {
 
     private License getLicense() {
         return new License()
-                .name("Unlicense")
+                .name("Unlicensed")
                 .url("https://unlicense.org/");
     }
 }

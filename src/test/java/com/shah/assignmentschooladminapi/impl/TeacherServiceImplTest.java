@@ -39,7 +39,7 @@ class TeacherServiceImplTest {
 
     private TeacherDto teacherDto;
     private Student student;
-    private Teacher teacher; 
+    private Teacher teacher;
     @Mock
     private ExistingDataCheck existingDataCheck;
     @Mock
