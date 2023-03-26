@@ -3,7 +3,6 @@ package com.shah.assignmentschooladminapi.impl;
 import com.shah.assignmentschooladminapi.entity.Student;
 import com.shah.assignmentschooladminapi.model.dto.StudentDto;
 import com.shah.assignmentschooladminapi.repository.StudentRepository;
-import com.shah.assignmentschooladminapi.repository.TeacherRepository;
 import com.shah.assignmentschooladminapi.service.StudentService;
 import com.shah.assignmentschooladminapi.util.ExistingDataCheck;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
-
-    @Autowired
-    private TeacherRepository teacherRepository;
     @Autowired
     private ExistingDataCheck existingDataCheck;
 

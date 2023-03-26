@@ -12,6 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * @author NORUL
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -30,10 +33,10 @@ public class SecurityConfig {
     /**
      * Allow endpoint with specific roles
      * Allow h2 console
-     * https://www.youtube.com/watch?v=awcCiqBO36E&list=PLZV0a2jwt22s5NCKOwSmHVagoDW8nflaC&index=7
+     * <a href="https://www.youtube.com/watch?v=awcCiqBO36E&list=PLZV0a2jwt22s5NCKOwSmHVagoDW8nflaC&index=7">...</a>
      *
-     * @param http
-     * @return
+     * @param http Http call
+     * @return SecurityFilterChain
      * @throws Exception
      */
     @Bean

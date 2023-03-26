@@ -64,10 +64,10 @@ class TeacherServiceImplTest {
         teacher = Teacher.builder()
                 .email(TEACHER_EMAIL1)
                 .name(TEACHER_NAME)
-                .students(new LinkedList<>(Arrays.asList(student)))
+                .students(new LinkedList<>(Collections.singletonList(student)))
                 .build();
 
-        List<String> students = Arrays.asList(STUDENT_EMAIL2);
+        List<String> students = List.of(STUDENT_EMAIL2);
 
         registerStudents = RegisterStudents.builder()
                 .teacher(TEACHER_EMAIL1)
@@ -101,7 +101,7 @@ class TeacherServiceImplTest {
     void registerStudentsToTeacher_StudentAlreadyRegistered() {
         registerStudents = RegisterStudents.builder()
                 .teacher(TEACHER_EMAIL1)
-                .students(Arrays.asList(STUDENT_EMAIL1))
+                .students(List.of(STUDENT_EMAIL1))
                 .build();
         when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacher));
         when(studentRepository.findByEmail(any())).thenReturn(Optional.of(student));
@@ -140,14 +140,13 @@ class TeacherServiceImplTest {
         when(teacherRepository.findByEmailAndStudentsEmail(any(), any())).thenReturn(Optional.of(teacher));
 
         teacherService.deRegisterStudentFromTeacher(deRegisterStudentFromTeacher);
-
         verify(teacherRepository, times(1)).findByEmailAndStudentsEmail(teacherDto.getEmail(), student.getEmail());
     }
 
     @Test
     void listOfStudentsCommonToAGivenListOfTeachers_CommonStudentNotFound() {
         when(teacherRepository.findByEmail(TEACHER_EMAIL2)).thenReturn(Optional.ofNullable(teacher));
-        when(teacherRepository.findByEmail(TEACHER_EMAIL1)).thenReturn(Optional.ofNullable(teacherMock));
+        when(teacherRepository.findByEmail(TEACHER_EMAIL1)).thenReturn(Optional.of(teacherMock));
         when(teacherMock.getStudents()).thenReturn(List.of(Student.builder().email(STUDENT_EMAIL2).build()));
         teacherService.listOfStudentsCommonToListOfTeachers(List.of(TEACHER_EMAIL1));
         assertThrows(AdminException.class, () -> teacherService.listOfStudentsCommonToListOfTeachers(teacherEmails));

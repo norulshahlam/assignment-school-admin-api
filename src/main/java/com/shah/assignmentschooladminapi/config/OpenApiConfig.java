@@ -21,12 +21,13 @@ import org.springframework.context.annotation.Configuration;
 @OpenAPIDefinition(
         info = @io.swagger.v3.oas.annotations.info.Info(
                 title = "School Admin API",
-                version = "v1")
+                version = "v1",
+        description = "Management of student and teacher data")
 )
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI customOpenAPI(OpenApiProperties properties) {
+    public OpenAPI customOpenApi(OpenApiProperties properties) {
         return new OpenAPI()
                 .info(getInfo(properties));
     }
