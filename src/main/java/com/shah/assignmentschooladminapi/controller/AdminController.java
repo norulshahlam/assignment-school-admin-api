@@ -101,12 +101,17 @@ public class AdminController {
     @Operation(summary = "Get list of students common to a given ist of teachers")
     @GetMapping("commonstudents")
     @ResponseStatus(HttpStatus.OK)
-    public CommonStudents listOfStudentsCommonToAGivenListOfTeachers(
-            @Parameter(description = "list of teacher's email", example = "[\"teacher1@xyz.com\", \"teacher2@xyz.com\"]")
+    public CommonStudents listOfStudentsCommonToListOfTeachers(
+            @Parameter(
+                    description = "list of teacher's email",
+                    example = "[\"teacher1@xyz.com\", \"teacher2@xyz.com\"]")
             @RequestParam(value = "teacher", required = false)
-            @NotEmpty(message = "Please input at least one teacher email")
-            List< @NotBlank(message = "teacher Email cannot be blank")
-            @Email(message = "teacher email address must be in proper format") String> teacherEmails) {
+            @NotEmpty(
+                    message = "Please input at least one teacher email")
+            List<
+                    @NotBlank(message = "teacher Email cannot be blank")
+                    @Email(message = "teacher email address must be in proper format")
+                            String> teacherEmails) {
         log.info("in AdminController::listOfStudentsCommonToListOfTeachers");
         log.info("listOfStudentsCommonToListOfTeachers: {}", teacherEmails);
 

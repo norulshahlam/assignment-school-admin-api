@@ -26,7 +26,7 @@ public class RegisterStudents {
     @Email(message = "teacher email address must be in proper format")
     private String teacher;
 
-    @Schema(type = "array", example = "[\"student1@xyz.com\"]")
+    @Schema(type = "array", example = "[\"student1@xyz.com\",\"student2@xyz.com\"]")
     private List<@Email(message = "student email address must be in proper format")
             @NotEmpty(message = "students Email cannot be blank")
                     String> students;

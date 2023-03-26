@@ -56,7 +56,7 @@ public class TeacherServiceImpl implements TeacherService {
         // Check if teacher exists in DB
         Teacher teacher = getTeacherByEmail(registerStudents.getTeacher());
 
-        // Remove any duplicate emails
+        // Get List of student emails + remove any duplicates
         List<String> newEmails = registerStudents.getStudents().stream().distinct().collect(Collectors.toList());
 
         // Check if student exists in DB
