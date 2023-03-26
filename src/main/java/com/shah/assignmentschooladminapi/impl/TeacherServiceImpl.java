@@ -1,16 +1,17 @@
 package com.shah.assignmentschooladminapi.impl;
 
-import com.shah.assignmentschooladminapi.model.dto.AllTeachersWithStudentsDto;
-import com.shah.assignmentschooladminapi.model.dto.TeacherDto;
 import com.shah.assignmentschooladminapi.entity.Student;
 import com.shah.assignmentschooladminapi.entity.Teacher;
 import com.shah.assignmentschooladminapi.exception.AdminException;
+import com.shah.assignmentschooladminapi.model.dto.AllTeachersWithStudentsDto;
+import com.shah.assignmentschooladminapi.model.dto.TeacherDto;
 import com.shah.assignmentschooladminapi.model.request.DeRegisterStudentFromTeacher;
 import com.shah.assignmentschooladminapi.model.request.RegisterStudents;
 import com.shah.assignmentschooladminapi.model.response.CommonStudents;
 import com.shah.assignmentschooladminapi.repository.StudentRepository;
 import com.shah.assignmentschooladminapi.repository.TeacherRepository;
 import com.shah.assignmentschooladminapi.service.TeacherService;
+import com.shah.assignmentschooladminapi.util.ExistingDataCheck;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,8 +23,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.shah.assignmentschooladminapi.mapper.DtoToEntityMapper.teacherDtoToEntityMapper;
-import static com.shah.assignmentschooladminapi.mapper.DtoToEntityMapper.teacherEntityToTeacherStudentDto;
+import static com.shah.assignmentschooladminapi.util.DtoToEntityMapper.teacherDtoToEntityMapper;
+import static com.shah.assignmentschooladminapi.util.DtoToEntityMapper.teacherEntityToTeacherStudentDto;
 
 /**
  * @author NORUL
@@ -38,14 +39,14 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    ExistingDataCheck existingDataCheck;
+
     @Override
     public void addTeacher(TeacherDto teacher) {
 
-        teacherRepository
-                .findByEmail(teacher.getEmail())
-                .ifPresent(i -> {
-                    throw new AdminException(i.getEmail() + " already exists");
-                });
+        // Check if teacher is already in the repository
+        existingDataCheck.ifDataIsInDb(teacher.getEmail());
         Teacher teacherEntity = teacherDtoToEntityMapper(teacher);
         teacherRepository.save(teacherEntity);
     }

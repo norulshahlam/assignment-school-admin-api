@@ -28,7 +28,7 @@ public class Teacher {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "teacher_student_map",
             joinColumns = @JoinColumn(

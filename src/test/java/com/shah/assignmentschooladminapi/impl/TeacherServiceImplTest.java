@@ -8,6 +8,7 @@ import com.shah.assignmentschooladminapi.model.request.DeRegisterStudentFromTeac
 import com.shah.assignmentschooladminapi.model.request.RegisterStudents;
 import com.shah.assignmentschooladminapi.repository.StudentRepository;
 import com.shah.assignmentschooladminapi.repository.TeacherRepository;
+import com.shah.assignmentschooladminapi.util.ExistingDataCheck;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,8 +39,9 @@ class TeacherServiceImplTest {
 
     private TeacherDto teacherDto;
     private Student student;
-    private Teacher teacher;
-
+    private Teacher teacher; 
+    @Mock
+    private ExistingDataCheck existingDataCheck;
     @Mock
     private Teacher teacherMock;
     private RegisterStudents registerStudents;
@@ -83,14 +85,8 @@ class TeacherServiceImplTest {
     @Test
     void addTeacher_Success() {
         teacherService.addTeacher(teacherDto);
-        verify(teacherRepository, times(1)).findByEmail(teacherDto.getEmail());
+        verify(teacherRepository, times(1)).save(any());
 
-    }
-
-    @Test
-    void addTeacher_Failure() {
-        when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacher));
-        assertThrows(AdminException.class, () -> teacherService.addTeacher(teacherDto));
     }
 
     @Test

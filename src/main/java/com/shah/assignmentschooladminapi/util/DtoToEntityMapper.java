@@ -1,4 +1,4 @@
-package com.shah.assignmentschooladminapi.mapper;
+package com.shah.assignmentschooladminapi.util;
 
 import com.shah.assignmentschooladminapi.model.dto.AllTeachersWithStudentsDto;
 import com.shah.assignmentschooladminapi.model.dto.StudentDto;
