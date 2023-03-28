@@ -12,10 +12,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * @author NORUL
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    /**
+     * Future configuration: JpaUSerDetailsService
+     * https://www.youtube.com/watch?v=awcCiqBO36E&t=1905s&ab_channel=DanVega
+     *
+     * @return
+     */
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
 
@@ -33,13 +42,13 @@ public class SecurityConfig {
                 .roles("ADMIN")
                 .build();
 
-        return new InMemoryUserDetailsManager(admin,user);
+        return new InMemoryUserDetailsManager(admin, user);
     }
 
     /**
      * Allow endpoint with specific roles
      * Allow h2 console
-     * https://www.youtube.com/watch?v=awcCiqBO36E&list=PLZV0a2jwt22s5NCKOwSmHVagoDW8nflaC&index=7
+     * <a href="https://www.youtube.com/watch?v=awcCiqBO36E&list=PLZV0a2jwt22s5NCKOwSmHVagoDW8nflaC&index=7">...</a>
      *
      * @param http
      * @return
@@ -56,8 +65,8 @@ public class SecurityConfig {
 //                                "/v3/api-docs/**",
 //                                "/swagger-ui/**",
 //                                "/swagger-ui.html").permitAll()
-                        .antMatchers("/h2-console/**").permitAll()
-                        .anyRequest().hasAnyRole("ADMIN")
+                                .antMatchers("/h2-console/**").permitAll()
+                                .anyRequest().hasAnyRole("ADMIN")
                 )
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .httpBasic(Customizer.withDefaults())

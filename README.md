@@ -24,7 +24,7 @@ The School Administration API provides the following features:
 - View all teacher with registered students
 
 ### Architecture diagram illustration
-![Image](./src/main/resources/architecture-diagram2.png)
+![Image](./src/main/resources/architecture-diagram2.png){ width="800" height="600" style="display: block; margin: 0 auto" }
 
 ### DB diagram illustration
 ![Image](./src/main/resources/db-diagram.PNG)
