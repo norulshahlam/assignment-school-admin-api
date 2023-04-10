@@ -1,10 +1,19 @@
 # Assignment for technical assessment [(Requirement)](https://gist.github.com/ongbt/b06720e106a4a02ddf33de7bc5537e19#backend-api-asessment)
 
 ### Introduction
+
 The School Admin project is an API service that register teachers to students. It provides a secure and easy-to-use platform for teachers to view their list of students.
 
+### Features
+The School Administration API provides the following features:
+
+- Student & teacher registration
+- Register single/multiple student to teacher
+- De-register single student from teacher
+- View all teacher with registered students
+
 ### Technology Stack
-The School Administration API is built using the following technology stack:
+This application is built using the following technology stack:
 
 - Java 11
 - Spring Boot Framework
@@ -16,13 +25,6 @@ The Spring Boot Framework provides a robust and scalable platform for building w
 
 By utilizing these technologies, the project is able to deliver a fast, reliable, and secure web application for managing assignments and students.  
 
-### Features
-The School Administration API provides the following features:
-
-- Student & teacher registration
-- Register single/multiple student to teacher
-- De-register single student from teacher
-- View all teacher with registered students
 
 ### Architecture diagram illustration
 ![Image](./src/main/resources/architecture-diagram2.png)
@@ -40,15 +42,17 @@ The School Administration API provides the following features:
 2. Maven
 3. Git
 
-### Usage
+### How to Run
 
 To run the Assignment School Admin project, follow these steps:
 
-- Make sure you have fulfilled the software requirements.
+- Make sure you have fulfilled the above software requirements.
 
-- Clone this git
+- Clone this repository to your local machine.
 
        git clone https://github.com/norulshahlam/assignment-school-admin-api.git
+
+- Navigate to the project directory in the terminal/command prompt.
 
 - Build the app by running the following command:
 
@@ -77,4 +81,6 @@ To run the Assignment School Admin project, follow these steps:
 
 - For any issues, email me at norulshahlam@gmail.com or whatsapp me at +6592212152
 
-### HAPPY TESTING!
+### Conclusion
+
+Congratulations, you have successfully compiled and run the app! With this application, users can easily manage data of teachers and students.
