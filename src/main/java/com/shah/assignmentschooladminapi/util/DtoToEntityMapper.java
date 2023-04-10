@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
  */
 public class DtoToEntityMapper {
 
+    private DtoToEntityMapper() {
+    }
+
     public static Teacher teacherDtoToEntityMapper(TeacherDto dto) {
 
         return Teacher.builder()

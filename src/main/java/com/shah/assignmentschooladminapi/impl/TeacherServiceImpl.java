@@ -12,6 +12,7 @@ import com.shah.assignmentschooladminapi.repository.StudentRepository;
 import com.shah.assignmentschooladminapi.repository.TeacherRepository;
 import com.shah.assignmentschooladminapi.service.TeacherService;
 import com.shah.assignmentschooladminapi.util.ExistingDataCheck;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -31,6 +32,7 @@ import static com.shah.assignmentschooladminapi.util.DtoToEntityMapper.teacherEn
  */
 @Service
 @Slf4j
+@Data
 public class TeacherServiceImpl implements TeacherService {
 
     @Autowired

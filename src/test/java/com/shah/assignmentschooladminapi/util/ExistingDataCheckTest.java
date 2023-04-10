@@ -6,7 +6,6 @@ import com.shah.assignmentschooladminapi.exception.AdminException;
 import com.shah.assignmentschooladminapi.repository.StudentRepository;
 import com.shah.assignmentschooladminapi.repository.TeacherRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -29,10 +28,6 @@ class ExistingDataCheckTest {
     private StudentRepository studentRepository;
     @InjectMocks
     private ExistingDataCheck existingDataCheck;
-
-    @BeforeEach
-    void setUp() {
-    }
 
     @Test
     void ifDataIsInDb() {

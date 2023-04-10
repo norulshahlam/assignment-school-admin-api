@@ -9,6 +9,7 @@ import com.shah.assignmentschooladminapi.model.request.RegisterStudents;
 import com.shah.assignmentschooladminapi.repository.StudentRepository;
 import com.shah.assignmentschooladminapi.repository.TeacherRepository;
 import com.shah.assignmentschooladminapi.util.ExistingDataCheck;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @Slf4j
+@Data
 class TeacherServiceImplTest {
 
     public static final String TEACHER_EMAIL1 = "teacher1@gmail.com";
@@ -32,6 +34,7 @@ class TeacherServiceImplTest {
     public static final String TEACHER_NAME = "name";
     public static final String STUDENT_EMAIL1 = "student1@abc.com";
     public static final String STUDENT_EMAIL2 = "student2@abc.com";
+
     @Mock
     private TeacherRepository teacherRepository;
     @Mock
@@ -131,7 +134,8 @@ class TeacherServiceImplTest {
 
     @Test
     void getTeacherWithStudents_Failure() {
-        when(teacherRepository.findAll()).thenReturn(new ArrayList<>());
+        ArrayList<Teacher> teacherArrayList = new ArrayList<>();
+        when(teacherRepository.findAll()).thenReturn(teacherArrayList);
         assertThrows(AdminException.class, () -> teacherService.getTeacherWithStudents());
     }
 
@@ -149,11 +153,14 @@ class TeacherServiceImplTest {
         when(teacherRepository.findByEmail(TEACHER_EMAIL1)).thenReturn(Optional.of(teacherMock));
         when(teacherMock.getStudents()).thenReturn(List.of(Student.builder().email(STUDENT_EMAIL2).build()));
         teacherService.listOfStudentsCommonToListOfTeachers(List.of(TEACHER_EMAIL1));
-        assertThrows(AdminException.class, () -> teacherService.listOfStudentsCommonToListOfTeachers(teacherEmails));
+        assertThrows(AdminException.class, () -> teacherService
+                .listOfStudentsCommonToListOfTeachers(teacherEmails));
     }
 
     @Test
     void listOfStudentsCommonToAGivenListOfTeachers_EmptyTeacherEmails() {
-        assertThrows(AdminException.class, () -> teacherService.listOfStudentsCommonToListOfTeachers(new ArrayList<>()));
+        List<String> emptyArraylist = new ArrayList<>();
+        assertThrows(AdminException.class, () -> teacherService
+                .listOfStudentsCommonToListOfTeachers(emptyArraylist));
     }
 }

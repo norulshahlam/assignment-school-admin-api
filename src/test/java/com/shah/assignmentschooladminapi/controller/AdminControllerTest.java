@@ -1,12 +1,12 @@
 package com.shah.assignmentschooladminapi.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shah.assignmentschooladminapi.impl.StudentServiceImpl;
 import com.shah.assignmentschooladminapi.impl.TeacherServiceImpl;
 import com.shah.assignmentschooladminapi.model.dto.StudentDto;
 import com.shah.assignmentschooladminapi.model.dto.TeacherDto;
 import com.shah.assignmentschooladminapi.model.request.DeRegisterStudentFromTeacher;
 import com.shah.assignmentschooladminapi.model.request.RegisterStudents;
+import lombok.Data;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
+@Data
 class AdminControllerTest {
 
     @Autowired
@@ -38,12 +39,9 @@ class AdminControllerTest {
     @MockBean
     private TeacherServiceImpl teacherService;
 
-    @MockBean
-    private StudentServiceImpl studentService;
-
     @WithMockUser(roles = {"ADMIN"})
     @Test
-    public void addStudentTest() throws Exception {
+    void addStudentTest() throws Exception {
         StudentDto student = StudentDto.builder()
                 .email("test@test.com")
                 .name("Test Student")
@@ -57,7 +55,7 @@ class AdminControllerTest {
 
     @WithMockUser(roles = {"ADMIN"})
     @Test
-    public void addTeacherTest() throws Exception {
+    void addTeacherTest() throws Exception {
         TeacherDto teacher = TeacherDto.builder()
                 .email("test@test.com")
                 .name("Test Teacher")
@@ -71,7 +69,7 @@ class AdminControllerTest {
 
     @WithMockUser(roles = {"ADMIN"})
     @Test
-    public void registerStudentsToTeacherTest() throws Exception {
+    void registerStudentsToTeacherTest() throws Exception {
         RegisterStudents registerStudents = RegisterStudents.builder()
                 .teacher("test@test.com")
                 .students(Arrays.asList("test1@test.com", "test2@test.com"))
@@ -85,7 +83,7 @@ class AdminControllerTest {
 
     @WithMockUser(roles = {"ADMIN"})
     @Test
-    public void deRegisterStudentFromTeacherTest() throws Exception {
+    void deRegisterStudentFromTeacherTest() throws Exception {
         DeRegisterStudentFromTeacher deRegister = DeRegisterStudentFromTeacher.builder()
                 .teacher("test@test.com")
                 .student("test1@test.com")
@@ -100,7 +98,7 @@ class AdminControllerTest {
 
     @WithMockUser(roles = {"ADMIN"})
     @Test
-    public void listOfStudentsCommonToAGivenListOfTeachersTest() throws Exception {
+    void listOfStudentsCommonToAGivenListOfTeachersTest() throws Exception {
         mockMvc.perform(get("/api/commonstudents")
                         .param("teacher", "test1@test.com")
                         .param("teacher", "test2@test.com"))
@@ -109,7 +107,7 @@ class AdminControllerTest {
 
     @WithMockUser(roles = {"ADMIN"})
     @Test
-    public void getTeacherWithStudentsListTest() throws Exception {
+    void getTeacherWithStudentsListTest() throws Exception {
         mockMvc.perform(get("/api/teachers"))
                 .andExpect(status().isOk());
     }

@@ -21,9 +21,9 @@ public class SecurityConfig {
 
     /**
      * Future configuration: JpaUSerDetailsService
-     * https://www.youtube.com/watch?v=awcCiqBO36E&t=1905s&ab_channel=DanVega
+     * <a href="https://www.youtube.com/watch?v=awcCiqBO36E&t=1905s&ab_channel=DanVega">...</a>
      *
-     * @return
+     * @return InMemoryUserDetailsManager
      */
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .roles("USER")
                 .build();
 
-        // You encode yourself then insert - secure
+        // You encode yourself then insert - value is `password`
         UserDetails admin = User
                 .withUsername("admin")
                 .password("$2a$09$9j2c1BTj4zMU.oaaSNumhOfgYuK21hfNiDR.H8HoE677Vh3kPsuQC")
@@ -50,9 +50,9 @@ public class SecurityConfig {
      * Allow h2 console
      * <a href="https://www.youtube.com/watch?v=awcCiqBO36E&list=PLZV0a2jwt22s5NCKOwSmHVagoDW8nflaC&index=7">...</a>
      *
-     * @param http
-     * @return
-     * @throws Exception
+     * @param http HttpSecurity
+     * @return SecurityFilterChain
+     * @throws Exception Exception class
      */
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {

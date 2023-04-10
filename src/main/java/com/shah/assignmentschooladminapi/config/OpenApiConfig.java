@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
         info = @io.swagger.v3.oas.annotations.info.Info(
                 title = "School Admin API",
                 version = "v1",
-        description = "Management of student and teacher data")
+                description = "Management of student and teacher data")
 )
 public class OpenApiConfig {
 

@@ -5,6 +5,7 @@ import com.shah.assignmentschooladminapi.model.dto.StudentDto;
 import com.shah.assignmentschooladminapi.repository.StudentRepository;
 import com.shah.assignmentschooladminapi.service.StudentService;
 import com.shah.assignmentschooladminapi.util.ExistingDataCheck;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import static com.shah.assignmentschooladminapi.util.DtoToEntityMapper.studentDt
  */
 @Service
 @Slf4j
+@Data
 public class StudentServiceImpl implements StudentService {
 
     @Autowired

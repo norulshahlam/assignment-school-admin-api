@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author NORUL
+ */
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
@@ -61,7 +64,7 @@ public class GlobalExceptionHandler {
      * When an action violates a constraint validation
      */
 
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({ConstraintViolationException.class})
     @ResponseBody
     public AdminResponse handleConstraintViolationException(HttpServletRequest req, ConstraintViolationException e) {
