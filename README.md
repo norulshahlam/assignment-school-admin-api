@@ -48,7 +48,7 @@ To run the Assignment School Admin project, follow these steps:
 
 - Make sure you have fulfilled the above software requirements.
 
-- Clone this repository to your local machine.
+- Clone this repository to your local machine by running the below command in terminal:
 
        git clone https://github.com/norulshahlam/assignment-school-admin-api.git
 
@@ -62,13 +62,13 @@ To run the Assignment School Admin project, follow these steps:
 
        java -jar target/assignment-school-admin-api-0.0.1-SNAPSHOT.jar
 
-- By default, dev profile is selected and there is no preloaded data. So you might need to add the data first.
+- Now your application has started. By default, dev profile is selected and there is no preloaded data. So you might need to add the data first.
 
-- You can test the API using swagger:
+- You can test the API using swagger by opening any browser and use the following url:
 
        {hostname}/swagger-ui/index.html#/
 
-- Alternatively, you can use postman to manually test the endpoints. Simply import the collection [**HERE**](/src/main/resources/assigment-school-admin-api.postman_collection.json) from Postman to test the endpoints. Make sure you have postman installed. You can click [**HERE**](https://www.postman.com/downloads/) to download if you dont't have one.
+- Alternatively, you can use postman to manually test the endpoints. Download the postman  collection [**HERE**](/src/main/resources/assigment-school-admin-api.postman_collection.json), and use Postman to import this collection. Now you can test the endpoints using Postman. Make sure you have postman installed. You can click [**HERE**](https://www.postman.com/downloads/) to download if you dont't have one.
 
 - As this is secured API, you have to enter your credentials. A prompt will be shown when you go to the swagger endpoint. If you are using Postman, add this credentials under basic auth:
 
