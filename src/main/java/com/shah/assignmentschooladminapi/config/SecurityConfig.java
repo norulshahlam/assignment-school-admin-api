@@ -21,6 +21,7 @@ public class SecurityConfig {
 
     /**
      * Future configuration: JpaUSerDetailsService
+     * Reference is taken from below link:
      * <a href="https://www.youtube.com/watch?v=awcCiqBO36E&t=1905s&ab_channel=DanVega">...</a>
      *
      * @return InMemoryUserDetailsManager
