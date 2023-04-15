@@ -1,7 +1,7 @@
 openapi:
-  project-title: @project.name@
-  project-version: @project.version@
-  project-description: @project.description@
+  project-title: School Admin API
+  project-version: v1
+  project-description: Management of student and teacher data
 spring-doc:
   pathsToMatch: /api/**
 spring:

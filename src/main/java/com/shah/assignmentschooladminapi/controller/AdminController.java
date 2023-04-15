@@ -28,7 +28,7 @@ import java.util.List;
  */
 @RestController
 @Slf4j
-@RequestMapping("api")
+@RequestMapping("api/v1")
 @Validated
 @Data
 public class AdminController {
@@ -41,8 +41,6 @@ public class AdminController {
 
     /**
      * User story #1
-     *
-     * @return
      */
     @Operation(summary = "add student")
     @PostMapping("students")
@@ -55,8 +53,6 @@ public class AdminController {
 
     /**
      * User story #2
-     *
-     * @return
      */
     @Operation(summary = "add Teacher")
     @PostMapping("teachers")
@@ -69,8 +65,6 @@ public class AdminController {
 
     /**
      * User story #3
-     *
-     * @return
      */
     @Operation(summary = "Register Student to Teacher")
     @PostMapping("register")
@@ -83,8 +77,6 @@ public class AdminController {
 
     /**
      * User story #4
-     *
-     * @param data
      */
     @Operation(summary = "de Register Student From Teacher")
     @PostMapping("deregister")
@@ -98,7 +90,7 @@ public class AdminController {
     /**
      * User story #5
      *
-     * @return
+     * @return CommonStudents
      */
     @Operation(summary = "Get list of students common to a given ist of teachers")
     @GetMapping("commonstudents")
@@ -123,7 +115,7 @@ public class AdminController {
     /**
      * User story #6
      *
-     * @return
+     * @return AllTeachersWithStudentsDto
      */
     @Operation(summary = "get Teacher With Students List")
     @GetMapping("teachers")
