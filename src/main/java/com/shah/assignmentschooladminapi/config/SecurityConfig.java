@@ -49,6 +49,7 @@ public class SecurityConfig {
     /**
      * Allow endpoint with specific roles
      * Allow h2 console
+     * Secure all other endpoints, including Swagger
      * <a href="https://www.youtube.com/watch?v=awcCiqBO36E&list=PLZV0a2jwt22s5NCKOwSmHVagoDW8nflaC&index=7">...</a>
      *
      * @param http HttpSecurity
@@ -62,13 +63,8 @@ public class SecurityConfig {
                         .ignoringAntMatchers("/h2-console/**")
                         .disable())
                 .authorizeRequests(auth -> auth
-//                        .antMatchers(
-//                                "/v3/api-docs/**",
-//                                "/swagger-ui/**",
-//                                "/swagger-ui.html").permitAll()
-                                .antMatchers("/h2-console/**").permitAll()
-                                .anyRequest().hasAnyRole("ADMIN")
-                )
+                        .antMatchers("/h2-console/**").permitAll()
+                        .anyRequest().authenticated())
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .httpBasic(Customizer.withDefaults())
                 .build();

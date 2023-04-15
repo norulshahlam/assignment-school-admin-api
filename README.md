@@ -32,8 +32,10 @@ By utilizing these technologies, the project is able to deliver a fast, reliable
 ### DB diagram illustration
 ![Image](./src/main/resources/db-diagram.PNG)
 
-  Hostname for dev profile: `http://localhost:8081`  
-  Hostname for prod profile: `https://assignment-school-admin-api.herokuapp.com/`  
+### Hostname
+
+- dev profile: `http://localhost:8081`  
+- prod profile: `https://assignment-school-admin-api.herokuapp.com/`  
 
 ### Software requirements
 
@@ -43,7 +45,7 @@ By utilizing these technologies, the project is able to deliver a fast, reliable
 
 ### How to Run
 
-To run the Assignment School Admin project, follow these steps:
+To run the School Admin API, follow these steps:
 
 - Make sure you have fulfilled the above software requirements.
 
@@ -74,9 +76,9 @@ To run the Assignment School Admin project, follow these steps:
        username: admin
        password: password
 
-- You may skip all steps above by using production url below to access Swagger (don't forget credentials!).
+- You may skip all steps above if the production hostname is available, to access Swagger (don't forget credentials!).
 
-       https://assignment-school-admin-api.herokuapp.com/swagger-ui/index.html
+        {hostname}/swagger-ui/index.html#/
 
 - For any issues, email me at norulshahlam@gmail.com or whatsapp me at +6592212152
 
