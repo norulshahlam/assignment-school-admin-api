@@ -35,7 +35,6 @@ By utilizing these technologies, the project is able to deliver a fast, reliable
   Hostname for dev profile: `http://localhost:8081`  
   Hostname for prod profile: `https://assignment-school-admin-api.herokuapp.com/`  
 
-
 ### Software requirements
 
 1. Java 11
