@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
 
+import static com.shah.assignmentschooladminapi.controller.AdminController.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -39,15 +40,21 @@ class AdminControllerTest {
     @MockBean
     private TeacherServiceImpl teacherService;
 
+    /** TODO
+     * Add test case for ControllerAdvice
+     * https://reflectoring.io/spring-boot-web-controller-test/
+     **/
+
     @WithMockUser(roles = {"ADMIN"})
     @Test
     void addStudentTest() throws Exception {
+
         StudentDto student = StudentDto.builder()
                 .email("test@test.com")
                 .name("Test Student")
                 .build();
 
-        mockMvc.perform(post("/api/students")
+        mockMvc.perform(post(API_V1 + STUDENTS)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(student)))
                 .andExpect(status().isCreated());
@@ -61,7 +68,7 @@ class AdminControllerTest {
                 .name("Test Teacher")
                 .build();
 
-        mockMvc.perform(post("/api/teachers")
+        mockMvc.perform(post(API_V1 + TEACHERS)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(teacher)))
                 .andExpect(status().isCreated());
@@ -75,7 +82,7 @@ class AdminControllerTest {
                 .students(Arrays.asList("test1@test.com", "test2@test.com"))
                 .build();
 
-        mockMvc.perform(post("/api/register")
+        mockMvc.perform(post(API_V1 + REGISTER)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(registerStudents)))
                 .andExpect(status().isNoContent());
@@ -90,7 +97,7 @@ class AdminControllerTest {
                 .reason("Cancelled enrollment")
                 .build();
 
-        mockMvc.perform(post("/api/deregister")
+        mockMvc.perform(post(API_V1 + DEREGISTER)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(deRegister)))
                 .andExpect(status().isOk());
@@ -99,7 +106,7 @@ class AdminControllerTest {
     @WithMockUser(roles = {"ADMIN"})
     @Test
     void listOfStudentsCommonToAGivenListOfTeachersTest() throws Exception {
-        mockMvc.perform(get("/api/commonstudents")
+        mockMvc.perform(get(API_V1 + COMMONSTUDENTS)
                         .param("teacher", "test1@test.com")
                         .param("teacher", "test2@test.com"))
                 .andExpect(status().isOk());
@@ -108,7 +115,7 @@ class AdminControllerTest {
     @WithMockUser(roles = {"ADMIN"})
     @Test
     void getTeacherWithStudentsListTest() throws Exception {
-        mockMvc.perform(get("/api/teachers"))
+        mockMvc.perform(get(API_V1 + TEACHERS))
                 .andExpect(status().isOk());
     }
 }

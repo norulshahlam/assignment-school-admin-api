@@ -28,11 +28,17 @@ import java.util.List;
  */
 @RestController
 @Slf4j
-@RequestMapping("api/v1")
+@RequestMapping(AdminController.API_V1)
 @Validated
 @Data
 public class AdminController {
 
+    public static final String API_V1 = "/api/v1";
+    public static final String STUDENTS = "/students";
+    public static final String TEACHERS = "/teachers";
+    public static final String REGISTER = "/register";
+    public static final String DEREGISTER = "/deregister";
+    public static final String COMMONSTUDENTS = "/commonstudents";
     @Autowired
     private TeacherService teacherService;
 
@@ -43,7 +49,7 @@ public class AdminController {
      * User story #1
      */
     @Operation(summary = "add student")
-    @PostMapping("students")
+    @PostMapping(STUDENTS)
     @ResponseStatus(HttpStatus.CREATED)
     public void addStudent(@Valid @RequestBody StudentDto student) {
         log.info("in AdminController::addStudent");
@@ -55,7 +61,7 @@ public class AdminController {
      * User story #2
      */
     @Operation(summary = "add Teacher")
-    @PostMapping("teachers")
+    @PostMapping(TEACHERS)
     @ResponseStatus(HttpStatus.CREATED)
     public void addTeacher(@Valid @RequestBody TeacherDto teacher) {
         log.info("in AdminController::addTeacher");
@@ -67,7 +73,7 @@ public class AdminController {
      * User story #3
      */
     @Operation(summary = "Register Student to Teacher")
-    @PostMapping("register")
+    @PostMapping(REGISTER)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addStudent(@Valid @RequestBody RegisterStudents registerStudents) {
         log.info("in AdminController::registerStudentsToTeacher");
@@ -79,7 +85,7 @@ public class AdminController {
      * User story #4
      */
     @Operation(summary = "de Register Student From Teacher")
-    @PostMapping("deregister")
+    @PostMapping(DEREGISTER)
     @ResponseStatus(HttpStatus.OK)
     public void deRegisterStudentFromTeacher(@Valid @RequestBody DeRegisterStudentFromTeacher data) {
         log.info("in AdminController::deRegisterStudentFromTeacher");
@@ -93,7 +99,7 @@ public class AdminController {
      * @return CommonStudents
      */
     @Operation(summary = "Get list of students common to a given ist of teachers")
-    @GetMapping("commonstudents")
+    @GetMapping(COMMONSTUDENTS)
     @ResponseStatus(HttpStatus.OK)
     public CommonStudents listOfStudentsCommonToListOfTeachers(
             @Parameter(
@@ -118,7 +124,7 @@ public class AdminController {
      * @return AllTeachersWithStudentsDto
      */
     @Operation(summary = "get Teacher With Students List")
-    @GetMapping("teachers")
+    @GetMapping(TEACHERS)
     @ResponseStatus(HttpStatus.OK)
     public AllTeachersWithStudentsDto getTeacherWithStudentsList() {
         log.info("in AdminController::getTeacherWithStudents");
