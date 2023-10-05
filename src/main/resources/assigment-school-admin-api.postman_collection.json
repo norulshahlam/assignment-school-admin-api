@@ -36,7 +36,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/api/teachers",
+					"raw": "http://localhost:8081/api/v1/teachers",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -44,6 +44,7 @@
 					"port": "8081",
 					"path": [
 						"api",
+						"v1",
 						"teachers"
 					]
 				}
@@ -58,7 +59,7 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "passwordd",
+							"value": "password",
 							"type": "string"
 						},
 						{
@@ -71,7 +72,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/api/teachers",
+					"raw": "http://localhost:8081/api/v1/teachers",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -79,6 +80,7 @@
 					"port": "8081",
 					"path": [
 						"api",
+						"v1",
 						"teachers"
 					]
 				}
@@ -106,7 +108,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/api/commonstudents?teacher=teacher2@gmail.com",
+					"raw": "http://localhost:8081/api/v1/commonstudents?teacher=teacher2@gmail.com",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -114,6 +116,7 @@
 					"port": "8081",
 					"path": [
 						"api",
+						"v1",
 						"commonstudents"
 					],
 					"query": [
@@ -171,7 +174,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/api/students",
+					"raw": "http://localhost:8081/api/v1/students",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -179,6 +182,7 @@
 					"port": "8081",
 					"path": [
 						"api",
+						"v1",
 						"students"
 					]
 				}
@@ -207,7 +211,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"teacher\": \"teacher1@gmail.com\",\r\n  \"students\":\r\n    [\r\n        \"student1@gmail.com\"\r\n    ]\r\n}",
+					"raw": "{\r\n  \"teacher\": \"teacher1@gmail.com\",\r\n  \"students\":\r\n    [\r\n        \"student1@gmail.com\",\r\n        \"student1@gmail.com\",\r\n        \"student1@gmail.com\"\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -215,7 +219,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/api/register",
+					"raw": "http://localhost:8081/api/v1/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -223,6 +227,7 @@
 					"port": "8081",
 					"path": [
 						"api",
+						"v1",
 						"register"
 					]
 				}
@@ -244,7 +249,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/api/deregister",
+					"raw": "http://localhost:8081/api/v1/deregister",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -252,6 +257,7 @@
 					"port": "8081",
 					"path": [
 						"api",
+						"v1",
 						"deregister"
 					]
 				}

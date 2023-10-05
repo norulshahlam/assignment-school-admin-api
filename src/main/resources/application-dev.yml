@@ -14,12 +14,12 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     generate-ddl: true
-    show-sql: true
+    show-sql: false
     database: h2
     database-platform: org.hibernate.dialect.H2Dialect
     properties:
       hibernate:
-        format_sql: false
+        format_sql: true
         ddl-auto: create
   sql:
     init:
@@ -33,3 +33,16 @@ spring:
     job:
       enabled: false
     initialize-schema: ALWAYS
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+database:
+  url: jdbc:log4jdbc:hsqldb:mem:db_name
+  driver:
+    class: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
