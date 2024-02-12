@@ -6,6 +6,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +30,6 @@ public class OpenApiConfig {
         return new io.swagger.v3.oas.models.security.SecurityScheme()
                 .scheme("basic")
                 .type(io.swagger.v3.oas.models.security.SecurityScheme.Type.HTTP)
-                .scheme("basic")
                 .description("Basic auth");
     }
 
@@ -40,10 +40,12 @@ public class OpenApiConfig {
                         .contact(getContact())
                         .termsOfService("getTermsOfService")
                         .license(getLicense())
-                ).servers(List.of(getServer1(), getServer2()));
+                ).servers(List.of(getServer1(), getServer2())).security(ff());
     }
 
-
+    private List<SecurityRequirement> ff() {
+        return List.of(new SecurityRequirement().addList("faaf","afaf"));
+    }
 
     private Server getServer1() {
         return new Server()
