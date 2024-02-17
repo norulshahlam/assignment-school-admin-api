@@ -10,9 +10,7 @@ import com.shah.assignmentschooladminapi.service.StudentService;
 import com.shah.assignmentschooladminapi.service.TeacherService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +28,6 @@ import java.util.List;
 @Slf4j
 @RequestMapping(AdminController.API_V1)
 @Validated
-@Data
 public class AdminController {
 
     public static final String API_V1 = "/api/v1";
@@ -39,11 +36,16 @@ public class AdminController {
     public static final String REGISTER = "/register";
     public static final String DEREGISTER = "/deregister";
     public static final String COMMONSTUDENTS = "/commonstudents";
-    @Autowired
-    private TeacherService teacherService;
 
-    @Autowired
-    private StudentService studentService;
+    private final TeacherService teacherService;
+
+    private final StudentService studentService;
+
+    public AdminController(TeacherService teacherService, StudentService studentService) {
+        this.teacherService = teacherService;
+        this.studentService = studentService;
+    }
+
 
     /**
      * User story #1

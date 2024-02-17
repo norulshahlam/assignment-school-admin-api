@@ -1,5 +1,3 @@
-server:
-  port: 8081
 management:
   endpoints:
     web:
@@ -33,16 +31,3 @@ spring:
     job:
       enabled: false
     initialize-schema: ALWAYS
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql:
-              BasicBinder: TRACE
-database:
-  url: jdbc:log4jdbc:hsqldb:mem:db_name
-  driver:
-    class: net.sf.log4jdbc.sql.jdbcapi.DriverSpy

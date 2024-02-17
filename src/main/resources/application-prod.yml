@@ -1,5 +1,4 @@
 server:
-  port: 8081
   tomcat:
     max-threads: 2
 management:
@@ -23,7 +22,6 @@ spring:
       connection-timeout: 20000
       auto-commit: true
       minimum-idle: 10
-
   jpa:
     generate-ddl: true
     show-sql: false

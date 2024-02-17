@@ -1,12 +1,18 @@
-openapi:
-  project-title: School Admin API
-  project-version: v1
-  project-description: Management of student and teacher data
+server:
+  port: 8081
 spring-doc:
   pathsToMatch: /api/**
+  title: School Admin API
+  version: v1
+  description: Management of student and teacher data
+  url: http://www.norulshahlam.com/
+  name: Shah & Co
+  email: norulshahlam@gmail.com
+  license-name: License 30AP
+  license-url: url
 spring:
   application:
-    name: assignment-school-admin-api
+    name: school-admin-api
     description: management of student and teacher data
   profiles:
     active: dev

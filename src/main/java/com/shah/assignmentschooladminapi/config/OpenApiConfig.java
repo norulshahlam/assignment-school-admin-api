@@ -34,12 +34,11 @@ public class OpenApiConfig {
     }
 
     @Bean
-    public OpenAPI customOpenApi(OpenApiProperties properties) {
+    public OpenAPI customOpenApi(SpringDocProperties properties) {
         return new OpenAPI()
                 .info(getInfo(properties)
-                        .contact(getContact())
-                        .termsOfService("getTermsOfService")
-                        .license(getLicense())
+                        .contact(getContact(properties))
+                        .license(getLicense(properties))
                 ).servers(List.of(getServer1(), getServer2())).security(ff());
     }
 
@@ -59,24 +58,24 @@ public class OpenApiConfig {
                 .url("http://localhost:8082");
     }
 
-    private Info getInfo(OpenApiProperties properties) {
+    private Info getInfo(SpringDocProperties properties) {
         return new Info()
-                .title(properties.getProjectTitle())
-                .description(properties.getProjectDescription())
-                .version(properties.getProjectVersion())
-                .license(getLicense());
+                .title(properties.getTitle())
+                .description(properties.getDescription())
+                .version(properties.getVersion())
+                .license(getLicense(properties));
     }
 
-    private Contact getContact() {
+    private Contact getContact(SpringDocProperties properties) {
         return new Contact()
-                .url("https://www.youtube.com/watch?v=2o_3hjUPAfQ&ab_channel=BoualiAli")
-                .name("Enquiry")
-                .email("norulshahlam@gmail.com");
+                .url(properties.getUrl())
+                .name(properties.getName())
+                .email(properties.getEmail());
     }
 
-    private License getLicense() {
+    private License getLicense(SpringDocProperties properties) {
         return new License()
-                .name("Unlicensed")
-                .url("https://unlicense.org/");
+                .name(properties.getLicenseName())
+                .url(properties.getLicenseUrl());
     }
 }
