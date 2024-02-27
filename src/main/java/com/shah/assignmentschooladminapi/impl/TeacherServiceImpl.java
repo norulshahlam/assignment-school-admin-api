@@ -2,7 +2,7 @@ package com.shah.assignmentschooladminapi.impl;
 
 import com.shah.assignmentschooladminapi.entity.Student;
 import com.shah.assignmentschooladminapi.entity.Teacher;
-import com.shah.assignmentschooladminapi.exception.AdminException;
+import com.shah.assignmentschooladminapi.exception.MyException;
 import com.shah.assignmentschooladminapi.model.dto.AllTeachersWithStudentsDto;
 import com.shah.assignmentschooladminapi.model.dto.TeacherDto;
 import com.shah.assignmentschooladminapi.model.request.DeRegisterStudentFromTeacher;
@@ -80,7 +80,7 @@ public class TeacherServiceImpl implements TeacherService {
     public AllTeachersWithStudentsDto getTeacherWithStudents() {
         List<Teacher> teacher = teacherRepository.findAll();
         if (ObjectUtils.isEmpty(teacher)) {
-            throw new AdminException("No teachers present");
+            throw new MyException("No teachers present");
         }
         return teacherEntityToTeacherStudentDto(teacher);
     }
@@ -91,7 +91,7 @@ public class TeacherServiceImpl implements TeacherService {
         // Check if student is already registered to the specified teacher
         Teacher teacher = teacherRepository
                 .findByEmailAndStudentsEmail(data.getTeacher(), data.getStudent())
-                .orElseThrow(() -> new AdminException("Student not found under specified teacher"));
+                .orElseThrow(() -> new MyException("Student not found under specified teacher"));
 
         Optional<Student> first = teacher.getStudents().stream().filter(i -> i.getEmail().equals(data.getStudent())).findFirst();
 
@@ -104,14 +104,14 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherRepository
                 .findByEmail(teacherEmail)
                 .orElseThrow(() ->
-                        new AdminException(teacherEmail + " doesn't exists"));
+                        new MyException(teacherEmail + " doesn't exists"));
     }
 
     private Student getStudentByEmail(String studentEmail) {
         return studentRepository
                 .findByEmail(studentEmail)
                 .orElseThrow(() ->
-                        new AdminException(studentEmail + " doesn't exists"));
+                        new MyException(studentEmail + " doesn't exists"));
     }
 
     private void checkForRegisteredStudents(Teacher teacher, List<String> newEmails) {
@@ -122,7 +122,7 @@ public class TeacherServiceImpl implements TeacherService {
                 .filter(oldEmails::contains)
                 .collect(Collectors.toList());
         if (!duplicates.isEmpty()) {
-            throw new AdminException(String.join(" and ", duplicates) + " already registered under teacher " + teacher.getEmail());
+            throw new MyException(String.join(" and ", duplicates) + " already registered under teacher " + teacher.getEmail());
         }
     }
 
@@ -152,7 +152,7 @@ public class TeacherServiceImpl implements TeacherService {
                 .orElse(new ArrayList<>());
 
         if (ObjectUtils.isEmpty(commonStudentEmails)) {
-            throw new AdminException("Common student not found");
+            throw new MyException("Common student not found");
         }
 
         if (teacherEmails.size() == 1) {

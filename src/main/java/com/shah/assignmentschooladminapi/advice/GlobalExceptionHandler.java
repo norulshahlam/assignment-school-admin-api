@@ -1,7 +1,7 @@
 package com.shah.assignmentschooladminapi.advice;
 
 
-import com.shah.assignmentschooladminapi.exception.AdminException;
+import com.shah.assignmentschooladminapi.exception.MyException;
 import com.shah.assignmentschooladminapi.model.response.AdminResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,9 +31,9 @@ public class GlobalExceptionHandler {
      * User-defined exception for business related exceptions
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({AdminException.class})
+    @ExceptionHandler({MyException.class})
     @ResponseBody
-    public AdminResponse handleAdminException(AdminException e) {
+    public AdminResponse handleAdminException(MyException e) {
         return AdminResponse.failureResponse(e.getErrorMessage());
     }
 

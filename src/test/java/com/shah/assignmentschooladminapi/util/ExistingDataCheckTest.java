@@ -2,7 +2,7 @@ package com.shah.assignmentschooladminapi.util;
 
 import com.shah.assignmentschooladminapi.entity.Student;
 import com.shah.assignmentschooladminapi.entity.Teacher;
-import com.shah.assignmentschooladminapi.exception.AdminException;
+import com.shah.assignmentschooladminapi.exception.MyException;
 import com.shah.assignmentschooladminapi.repository.StudentRepository;
 import com.shah.assignmentschooladminapi.repository.TeacherRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -39,9 +39,9 @@ class ExistingDataCheckTest {
         existingDataCheck.ifDataIsInDb("abc@xyz.com");
         // Teacher found in repository
         when(teacherRepository.findByEmail(any())).thenReturn(Optional.of(teacher));
-        assertThrows(AdminException.class, () -> existingDataCheck.ifDataIsInDb("abc@xyz.com"));
+        assertThrows(MyException.class, () -> existingDataCheck.ifDataIsInDb("abc@xyz.com"));
         // Student found in repository
         when(studentRepository.findByEmail(any())).thenReturn(Optional.of(student));
-        assertThrows(AdminException.class, () -> existingDataCheck.ifDataIsInDb("abc@xyz.com"));
+        assertThrows(MyException.class, () -> existingDataCheck.ifDataIsInDb("abc@xyz.com"));
     }
 }

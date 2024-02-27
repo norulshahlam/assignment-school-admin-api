@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class AdminException extends RuntimeException {
+public class MyException extends RuntimeException {
 
     private final String errorMessage;
 }

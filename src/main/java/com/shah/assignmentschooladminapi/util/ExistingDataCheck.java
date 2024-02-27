@@ -1,6 +1,6 @@
 package com.shah.assignmentschooladminapi.util;
 
-import com.shah.assignmentschooladminapi.exception.AdminException;
+import com.shah.assignmentschooladminapi.exception.MyException;
 import com.shah.assignmentschooladminapi.repository.StudentRepository;
 import com.shah.assignmentschooladminapi.repository.TeacherRepository;
 import lombok.Data;
@@ -26,12 +26,12 @@ public class ExistingDataCheck {
         studentRepository
                 .findByEmail(email)
                 .ifPresent(i -> {
-                    throw new AdminException(i.getEmail() + " already exists");
+                    throw new MyException(i.getEmail() + " already exists");
                 });
         teacherRepository
                 .findByEmail(email)
                 .ifPresent(i -> {
-                    throw new AdminException(i.getEmail() + " already exists");
+                    throw new MyException(i.getEmail() + " already exists");
                 });
     }
 }
